@@ -8,9 +8,9 @@ def index():
     return "from snippet"
 
 
-@app.get("/property")
-def property():
-    return "this is a property page"
+@app.get("/property/{id}")
+def property(id):
+    return f"this is a property page {id}"
 
 
 @app.get("/movies")
