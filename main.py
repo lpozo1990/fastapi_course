@@ -1,23 +1,15 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
-@app.get("/user/admin")
-def admin():
-    return {"this is admin page"}
+class Profile(BaseModel):
+    name: str = "Tom"
+    email: str = "email@mail.com"
+    age: int = 29
 
 
-@app.get("/user/{username}")
-def profile(username):
-    return {f"this is profile page for {username}"}
-
-
-@app.get("/products")
-def products(id=1, price=200):
-    return {f"product with an id: {id} and ${price}"}
-
-
-@app.get("/profile/{userid}/comments")
-def profile(userid: int, commentid: int = 12):
-    return {f"Profile page for user {userid} and commentid {commentid}"}
+@app.post("/adduser")
+def addUser(user: Profile):
+    return {f"user data:{user.model_dump()}"}
