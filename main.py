@@ -11,3 +11,8 @@ def admin():
 @app.get("/user/{username}")
 def profile(username):
     return {f"this is profile page for {username}"}
+
+
+@app.get("/products")
+def products(id, price):
+    return {f"product with an id: {id} and ${price}"}
