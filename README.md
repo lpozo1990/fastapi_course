@@ -1,4 +1,4 @@
-## Fastapi course
-# Handle HTTP verbs and etc
+# Fastapi course
+## Handle HTTP verbs and etc
 
 Readme is wip
