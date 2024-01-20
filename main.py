@@ -22,7 +22,7 @@ def addUser(user: Profile):
     return {f"user data:{user.model_dump()}"}
 
 
-@app.post("/addproduct")
-def add_product(product: Product):
+@app.post("/addproduct/{product_id}")
+def add_product(product: Product, product_id: int, category: str):
     product.discounted_price = product.price - (product.price * product.discount) / 100
-    return product
+    return {"productid": product_id, "product": product, "category": category}
