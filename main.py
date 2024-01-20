@@ -1,6 +1,8 @@
 from typing import List, Set
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+from uuid import UUID
+from datetime import datetime
 
 app = FastAPI()
 
@@ -24,7 +26,9 @@ class User(BaseModel):
 
 
 class Product(BaseModel):
+    uuid: UUID
     name: str = Field(examples=["Foo"])
+    purchase_date: datetime
     description: str | None = Field(default=None, examples=["A very nice Item"])
     price: float = Field(examples=[35.4])
     discount: int
