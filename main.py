@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ class Profile(BaseModel):
 
 class Product(BaseModel):
     name: str
-    price: int
+    price: int = Field(title="price of the item", description="This is descr")
     discount: int
     discounted_price: float
 
