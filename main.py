@@ -1,4 +1,4 @@
-from typing import Set
+from typing import List, Set
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
@@ -11,9 +11,16 @@ class Profile(BaseModel):
     age: int = 29
 
 
+class Offer(BaseModel):
+    name: str
+    description: str
+    price: float
+
+
 class User(BaseModel):
     name: str = "placeholder"
     email: str = "mail@email.com"
+    offerts: List[Offer]
 
 
 class Product(BaseModel):
@@ -21,7 +28,7 @@ class Product(BaseModel):
     price: int = Field(title="price of the item", description="This is descr")
     discount: int
     discounted_price: float
-    tags: Set["User"] = []
+    tags: Set[User] = []
 
 
 @app.post("/purchase")
