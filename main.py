@@ -1,5 +1,5 @@
 from typing import List, Set
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
@@ -23,6 +23,12 @@ class User(BaseModel):
     name: str = "placeholder"
     email: str = "mail@email.com"
     offerts: List[Offer]
+
+
+@app.post("/login")
+def login(username: str = Form(...), password: str = Form(...)):
+    print("login detected from outside")
+    return [username, password]
 
 
 class Product(BaseModel):
