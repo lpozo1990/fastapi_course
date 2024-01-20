@@ -28,9 +28,21 @@ class Product(BaseModel):
     price: int = Field(title="price of the item", description="This is descr")
     discount: int
     discounted_price: float
-    tags: Set[User] = []
+    tags: Set[str] = []
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "name": "Phone",
+                    "price": 100,
+                    "discount": 10,
+                    "tags": ["tag1", "tag2"],
+                }
+            ]
+        }
+    }
 
 
 @app.post("/purchase")
-def purchase(user: User, product: Product):
-    return {"user": user, "product": product}
+def purchase(product: Product):
+    return {"product": product}
